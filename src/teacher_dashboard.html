@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/index.css" rel="stylesheet">
+    <title>Teacher Dashboard</title>
+</head>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<body class="bg-grey-300 h-screen p-4 flex">
+
+<!-- User Menu -->
+<div class="flex flex-col w-1/5 mx-4 p-4 bg-green-50">
+    <div class="flex items-center">
+        <div>
+            <div class="text-xl font-bold w-8 h-8">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="0.75"
+                     stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+            </div>
+            <div class="text-gray-500">Teacher ID</div>
+        </div>
+    </div>
+
+    <button class='mt-8 bg-green-200 p-1'>
+        Class Assignment
+    </button>
+    <button class='mt-2 bg-green-200 p-1'>
+        My Schedule
+    </button>
+
+    <button class="mt-4 bg-gray-200 hover:bg-gray-300 text-black font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+            onclick="location.href='/index.html'">
+        Log Out
+    </button>
+</div>
+
+<!-- Forms -->
+<div class="flex-col w-2/3 p-4 bg-gray-100">
+    <!-- Add Assignment Form -->
+    <form id="addAssignmentForm" class="flex flex-col my-12 w-full">
+        <label for="class">Class:</label>
+        <select id="class" name="class">
+            <option value="level1A">Level 1 A</option>
+            <option value="level1B">Level 1 B</option>
+            <option value="level2A">Level 2 A</option>
+            <option value="level3">Level 3</option>
+            <option value="level4">Level 4</option>
+        </select>
+        <label for="assignment" class='mt-2'>Assignment:</label>
+        <textarea id="assignment" name="assignment" rows='4'></textarea>
+        <button type="submit" class="bg-amber-200 hover:bg-amber-500 ">Add Assignment</button>
+    </form>
+
+    <!-- Personal Schedule Form -->
+
+</div>
+</body>
+</html>

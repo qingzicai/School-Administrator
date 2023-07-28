@@ -1,13 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/index.css" rel="stylesheet">
+    <title>School Administrator</title>
+</head>
+
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+<div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-full px-3 mb-6 md:mb-0">
+            <h1 class="block text-grey-darker text-lg font-bold mb-2 text-center text-3xl mb-4">
+                Welcome to School Administrator
+            </h1>
+        </div>
+    </div>
+    <div class="flex items-center justify-between">
+        <button id="adminButton"
+                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="button">
+            Admin
+        </button>
+        <button id="teacherButton"
+                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="button">
+            Teacher
+        </button>
+    </div>
+</div>
+<form id="adminForm" class="hidden">
+    <input type="text" id="adminID" placeholder="ID">
+    <input type="password" id="adminPassword" placeholder="Password">
+    <button type="submit">Submit</button>
+</form>
+
+<form id="teacherForm" class="hidden">
+    <input type="text" id="teacherID" placeholder="ID">
+    <input type="password" id="teacherPassword" placeholder="Password">
+    <button type="submit">Submit</button>
+</form>
+<script>
+    const teacherButton = document.getElementById('teacherButton');
+    const adminButton = document.getElementById('adminButton');
+
+    teacherButton.addEventListener('click', () => {
+        window.location.href = '/src/teacher_dashboard.html'; // replace with the actual path to your teacher dashboard page
+    });
+
+    adminButton.addEventListener('click', () => {
+        window.location.href = '/admin_dashboard.html'; // replace with the actual path to your teacher dashboard page
+    });
+
+</script>
+</body>
 </html>
+
