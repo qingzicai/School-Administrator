@@ -45,19 +45,67 @@
     <form id="addAssignmentForm" class="flex flex-col my-12 w-full">
         <label for="class">Class:</label>
         <select id="class" name="class">
-            <option value="level1A">Level 1 A</option>
-            <option value="level1B">Level 1 B</option>
-            <option value="level2A">Level 2 A</option>
-            <option value="level3">Level 3</option>
-            <option value="level4">Level 4</option>
+            <option value="1">Level 1 A</option>
+            <option value="2">Level 1 B</option>
+            <option value="4">Level 2 A</option>
+            <option value="3">Level 3</option>
+            <option value="5">Level 4</option>
         </select>
         <label for="assignment" class='mt-2'>Assignment:</label>
         <textarea id="assignment" name="assignment" rows='4'></textarea>
-        <button type="submit" class="bg-amber-200 hover:bg-amber-500 ">Add Assignment</button>
+        <button type="submit" class="bg-amber-200 hover:bg-amber-500 mt-2 ">Add Assignment</button>
     </form>
+    <p id="message"></p>
 
     <!-- Personal Schedule Form -->
 
 </div>
+
+<script type="module">
+    import {createClient} from '@supabase/supabase-js'
+
+    const supabaseUrl = 'https://qdzhecspothfvernvdms.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFkemhlY3Nwb3RoZnZlcm52ZG1zIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY4ODA2MDYxMSwiZXhwIjoyMDAzNjM2NjExfQ.0GTDV2EgHtrsGRfEC6c4bizr-iEzGwFWE3aHgoSJq3s';
+    const supabase = createClient(supabaseUrl, supabaseKey);
+    const addAssignmentForm = document.getElementById('addAssignmentForm')
+
+    // Function to add an assignment to the "assignment" table in Supabase
+    async function addAssignment(e) {
+        e.preventDefault(); // Prevent the default form submission behavior
+
+        const classSelect = document.getElementById('class');
+        const assignmentTextarea = document.getElementById('assignment');
+
+        const classValue = classSelect.value;
+        const assignmentValue = assignmentTextarea.value;
+
+        try {
+            const {data, error} = await supabase
+                .from('assignment')
+                .insert([{class: classValue, assignment: assignmentValue}]);
+
+            if (error) {
+                console.error('Error adding assignment:', error.message);
+            } else {
+                console.log('Assignment added successfully:', data);
+
+                // Show success message on the page
+                const message = document.getElementById('message');
+                message.textContent = `New assignment has been added to ${classValue}.`;
+
+                // Clear the form after successful submission
+                classSelect.value = 'level1A'; // Set default class value
+                assignmentTextarea.value = ''; // Clear the assignment text
+            }
+        } catch (error) {
+            console.error('Error adding assignment:', error.message);
+        }
+    }
+
+    // Add event listener to the form for form submission handling
+    addAssignmentForm.addEventListener('submit', addAssignment);
+</script>
+
+
 </body>
 </html>
