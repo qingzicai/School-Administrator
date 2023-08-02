@@ -13,13 +13,13 @@
         const classSelect = document.getElementById('class');
         const assignmentTextarea = document.getElementById('assignment');
 
-        const classValue = classSelect.value;
+        const classValue = Number(classSelect.value);
         const assignmentValue = assignmentTextarea.value;
 
         try {
             const {data, error} = await supabase
                 .from('assignment')
-                .insert([{class: classValue, assignment: assignmentValue}]);
+                .insert([{class_id: classValue, assignment: assignmentValue}]);
 
             if (error) {
                 console.error('Error adding assignment:', error.message);
@@ -50,6 +50,13 @@
             const {data: assignments, error} = await supabase
                 .from('assignment')
                 .select('*');
+
+            //select(`
+            //     assignment.id, assignment.assignment, class.class_level
+            //     class (
+            //       class_id
+            //     )
+            //   `)
 
             if (error) {
                 console.error('Error retrieving assignments:', error.message);
